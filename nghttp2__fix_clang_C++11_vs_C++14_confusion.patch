@@ -1,0 +1,16 @@
+Index: src/shrpx_client_handler.cc
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/shrpx_client_handler.cc	(revision ee4431344511886efc66395a38b9bf5dddd7151b)
++++ src/shrpx_client_handler.cc	(revision 90e46a32f16b1c09ab1f6e027affdb2baeec6046)
+@@ -983,7 +983,7 @@
+     dconn = std::make_unique<HttpDownstreamConnection>(group, addr, conn_.loop,
+                                                        worker_);
+     dconn->set_client_handler(this);
+-    return dconn;
++    return std::move(dconn);
+   }
+ 
+   if (LOG_ENABLED(INFO)) {
