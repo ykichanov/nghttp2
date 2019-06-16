@@ -994,7 +994,7 @@ ClientHandler::get_downstream_connection(int &err, Downstream *downstream) {
   auto http2session = get_http2_session(group, addr);
   auto dconn = std::make_unique<Http2DownstreamConnection>(http2session);
   dconn->set_client_handler(this);
-  return dconn;
+  return std::move(dconn);
 }
 
 MemchunkPool *ClientHandler::get_mcpool() { return worker_->get_mcpool(); }
