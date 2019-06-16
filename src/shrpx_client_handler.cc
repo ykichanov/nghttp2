@@ -983,7 +983,7 @@ ClientHandler::get_downstream_connection(int &err, Downstream *downstream) {
     dconn = std::make_unique<HttpDownstreamConnection>(group, addr, conn_.loop,
                                                        worker_);
     dconn->set_client_handler(this);
-    return dconn;
+    return std::move(dconn);
   }
 
   if (LOG_ENABLED(INFO)) {
